@@ -1,5 +1,20 @@
-var data = [[5,4], [3,6], [5,5], [6,2], [3,5]]; //TEST DATA
+var data; //TEST DATA
+$(function()
+{
+        $.ajax({
+            url: '/getWW1Wreck',
+            type: 'GET',
+            success: function(res) {
+                console.log(res);
+               data = JSON.Parse(res);
+               console.log(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
 
+});
 
 function plotData(){
     var width = $(".map").width();
