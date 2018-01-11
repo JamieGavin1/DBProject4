@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+         <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../static/css/styling.css" />
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <script src="../static/js/jquery-1.11.2.js"></script>
+        <script src="../static/js/signIn.js"></script>
+    </head>
+
+    <body>
+        <div class="titleBox">
+            <img src="../static/images/WreckRepoLogo.png" class="logo"/>
+        </div>
+
+        <div class="logInBox">
+           <h1>Bucket List App</h1>
+            <form class="form-signin" action="/validateLogin" method="post">
+            <label for="inputEmail" class="usernameField">Email address</label>
+            <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="passwordField">Password</label>
+            <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+
+            <button id="btnSignIn" class="loginButton" type="submit">Sign in</button>
+            </form>
+        </div>
+        
+        <div class="registerBox">
+            <p class="registerMessage">Don't have an account?</p>
+            <button class="registerButton" type="button" onclick="alert('Hello world!')">Register</button>
+            </form>
+        </div>
+    </body>
+</html>
