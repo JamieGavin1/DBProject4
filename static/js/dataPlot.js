@@ -1,25 +1,30 @@
 var data; //TEST DATA
-$(function()
-{
-        $.ajax({
+
+
+function plotData(){
+    var width = $(".map").width();
+    var height = $(".map").height();
+     $.ajax({
             url: '/getWW1Wreck',
             type: 'GET',
             success: function(res) {
                 console.log(res);
-               data = JSON.Parse(res);
-               console.log(data);
+                data = JSON.parse(res);
+                console.log(data);
+                console.log(data[0]);
+                console.log(data[0].Name);
+
+
+                for(var i = 0; i < data.length; i++)
+                {
+                    console.log(data[i].Name);
+                    console.log(data[0].X);
+                }
             },
             error: function(error) {
                 console.log(error);
             }
         });
-
-});
-
-function plotData(){
-    var width = $(".map").width();
-    var height = $(".map").height();
-
     var x = d3.scaleLinear()
         .domain([0, d3.max(data, function(d){return d[0]; })])
         .range([0, width]);

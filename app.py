@@ -65,7 +65,7 @@ def getWW1Wreck():
             ww1wrecks_dict = []
             for ww1wreck in ww1wrecks:
                 ww1wreck_dict = {
-                        'x': float(str(ww1wreck[0])),
+                        'X': float(str(ww1wreck[0])),
                         'Z': float(str(ww1wreck[1])),
                         'Name': ww1wreck[2]}
                 ww1wrecks_dict.append(ww1wreck_dict)
