@@ -22,6 +22,10 @@ def main():
 def showSignUp():
     return render_template('signup.html')
 
+@app.route('/showMap')
+def showMap():
+    return render_template('map.html')
+
 @app.route('/showAddWreck')
 def showAddWreck():
     return render_template('addWreck.html')
@@ -45,6 +49,33 @@ def userHome():
 def logout():
     session.pop('user',None)
     return redirect('/')
+
+
+@app.route('/getWW1Wreck')
+def getWW1Wreck():
+    try:
+        if session.get('user'):
+            _user = session.get('user')
+
+            con = mysql.connect()
+            cursor = con.cursor()
+            cursor.callproc('sp_GetWW1Wreck',(_user,))
+            ww1wrecks = cursor.fetchall()
+
+            ww1wrecks_dict = []
+            for ww1wreck in ww1wrecks:
+                ww1wreck_dict = {
+                        'X': float(str(ww1wreck[0])),
+                        'Z': float(str(ww1wreck[1])),
+                        'Name': ww1wreck[2]}
+                ww1wrecks_dict.append(ww1wreck_dict)
+
+            return json.dumps(ww1wrecks_dict)
+        else:
+            return render_template('error.html', error = 'Unauthorized Access')
+    except Exception as e:
+        return render_template('error.html', error = str(e))
+
 
 @app.route('/getWreck')
 def getWreck():
@@ -241,5 +272,7 @@ def deleteWreck():
     finally:
         cursor.close()
         conn.close()
+
+
 if __name__ == "__main__":
     app.run(port=5002)
