@@ -22,6 +22,10 @@ def main():
 def showSignUp():
     return render_template('signup.html')
 
+@app.route('/showMap')
+def showMap():
+    return render_template('map.html')
+
 @app.route('/showAddWreck')
 def showAddWreck():
     return render_template('addWreck.html')
@@ -61,10 +65,9 @@ def getWW1Wreck():
             ww1wrecks_dict = []
             for ww1wreck in ww1wrecks:
                 ww1wreck_dict = {
-                        'Id': ww1wreck[0],
-                        'Title': ww1wreck[1],
-                        'Description': ww1wreck[2],
-                        'Date': ww1wreck[4]}
+                        'x': float(str(ww1wreck[0])),
+                        'Z': float(str(ww1wreck[1])),
+                        'Name': ww1wreck[2]}
                 ww1wrecks_dict.append(ww1wreck_dict)
 
             return json.dumps(ww1wrecks_dict)
